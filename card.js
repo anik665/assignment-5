@@ -88,4 +88,14 @@ document.addEventListener('DOMContentLoaded', function () {
             navigator.clipboard.writeText(text)
         });
     });
-});
+
+
+}); 
+
+    let historyCointainers=document.getElementById('history')
+document.getElementById('history-btn').addEventListener('click',function(){
+    console.log('history')
+    
+    history=[]
+    historyCointainers.innerHTML=''
+})
