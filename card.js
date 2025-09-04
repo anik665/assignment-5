@@ -5,18 +5,28 @@ function card() {
         if (e.target.tagName == 'BUTTON') {
             const button = e.target;
             //    const callBtn= button.parentNode.parentNode.children[5].children[1].innerText; 
-            const coin = document.getElementById('coin').innerText
+            let coinElement=document.getElementById('coin')
+            let coin = Number(coinElement.innerText)
 
 
             const callBtn = e.target.innerText.trim()
             if (callBtn == 'Call') {
+                if(coin>=20){
+                  coin=  coin-20
+                  coinElement.innerText=coin
 
+                    
                 const call = button.parentNode.parentNode.children[3].innerText
                 if (call) {
-                    alert(document.createElement('div')
+                    alert(`Calling ${call}`
+                    
                     )
                     cardCount++  //Number(call) for add the value
                     const callCount = document.getElementById('call-count').innerText = cardCount
+                }
+                }
+                else{
+                    alert('You have not enough coin')
                 }
 
 
