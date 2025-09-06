@@ -15,28 +15,35 @@ function card() {
                 if (coin >= 20) {
                     coin = coin - 20
                     coinElement.innerText = coin
-                    const name = button.parentNode.parentNode.children[1].innerText
+                    const headname = button.parentNode.parentNode.children[1].innerText
+                    console.log(headname)
+                    const name = button.parentNode.parentNode.children[2].innerText
+                    console.log(name)
                     const call = button.parentNode.parentNode.children[3].innerText
+                    const callIcon =document.getElementById('call-icon').innerHTML
+
 
 
 
                     if (call) {
-                        alert(`Calling ${call}`
+                        alert(`${headname}  Calling ${call} ${name}`
 
                         )
-                        cardCount++  //Number(call) for add the value
-                        const callCount = document.getElementById('call-count').innerText = cardCount
+
+                        
+                        //Number(call) for add the value
+                      
 
                         const data = {
-                            name:name,
+                            name: name,
                             number: call,
-                            
+
                             date: new Date().toLocaleTimeString()
                         }
                         history.push(data)
-                        const historyCointainer=document.getElementById('history')
+                        const historyCointainer = document.getElementById('history')
                         const div = document.createElement('div')
-                        div.innerHTML=`
+                        div.innerHTML = `
                          <div
                             class="w-[350px] h-[105px] bg-[#fafafa] p-3 mt-5 rounded-sm flex justify-start gap-3 items-center border border-gray-300">
                             <div class="flex flex-col justify-start">
@@ -65,7 +72,7 @@ function card() {
             console.log(callBtn)
         }
     })
-   
+
 }
 card()
 
@@ -90,12 +97,39 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-}); 
+});
 
-    let historyCointainers=document.getElementById('history')
-document.getElementById('history-btn').addEventListener('click',function(){
+let historyCointainers = document.getElementById('history')
+document.getElementById('history-btn').addEventListener('click', function () {
     console.log('history')
-    
-    history=[]
-    historyCointainers.innerHTML=''
+
+    history = []
+    historyCointainers.innerHTML = ''
 })
+const heart = document.querySelectorAll('.fa-heart')
+heart.forEach(function (hbtn) {
+    hbtn.addEventListener('click', function () {
+        cardCount++
+          const callCount = document.getElementById('call-count').innerText = cardCount
+        console.log('click heart')
+    })
+
+})
+ const callIcon =document.getElementById('call-icon').innerText 
+ console.log(callIcon)
+function customAlert(call, name) {
+  const icon = document.getElementById("call-icon").innerHTML;
+
+  // custom popup বানানো
+  const popup = document.createElement("div");
+  popup.innerHTML = `
+    <div style="padding:20px; background:#fff; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.3); text-align:center;">
+      ${icon}
+      <p style="margin-top:10px; font-size:18px;">Calling ${call} ${name}</p>
+      <button onclick="this.parentElement.remove()" style="margin-top:10px; padding:5px 10px; border:none; background:#00a63e; color:#fff; border-radius:5px;">OK</button>
+    </div>
+  `;
+
+  // body তে যোগ করা
+  document.body.appendChild(popup);
+}
